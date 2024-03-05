@@ -1,4 +1,4 @@
-package med.voll.api.infra;
+package med.voll.api.infra.errors;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.persistence.EntityNotFoundException;
-import med.voll.api.infra.errors.DadosErroValidacao;
 
 @RestControllerAdvice
 public class ErrorHandler {
