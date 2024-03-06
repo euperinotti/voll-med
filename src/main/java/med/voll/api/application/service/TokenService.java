@@ -21,7 +21,7 @@ public class TokenService {
 
   public String generateToken(Usuario usuario) {
     try {
-      Algorithm algorithm = Algorithm.HMAC256("");
+      Algorithm algorithm = Algorithm.HMAC256(this.secret);
       return JWT.create()
           .withIssuer("voll-med")
           .withSubject(usuario.getLogin())
@@ -34,6 +34,19 @@ public class TokenService {
 
   private Instant expirationTime() {
     return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+  }
+
+  public String decryptToken(String token) {
+    try {
+      Algorithm algorithm = Algorithm.HMAC256(this.secret);
+      return JWT.require(algorithm)
+          .withIssuer("voll-med")
+          .build()
+          .verify(token)
+          .getSubject();
+    } catch (JWTCreationException e) {
+      throw new RuntimeException("Expired Token", e);
+    }
   }
 
 }
