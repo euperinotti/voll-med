@@ -1,7 +1,6 @@
-package med.voll.api.domain.paciente;
+package med.voll.api.application.dto;
 
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.domain.endereco.DadosEndereco;
 
 public record DadosAtualizacaoPaciente(
         @NotNull
