@@ -2,6 +2,7 @@ package med.voll.api.infra.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +19,12 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain execute(HttpSecurity http) throws Exception {
     return http.csrf(csrf -> csrf.disable())
-        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(req -> {
+            req.antMatchers(HttpMethod.POST,"/login");
+            req.anyRequest().authenticated();
+          })
+        .build();
   }
 
   @Bean

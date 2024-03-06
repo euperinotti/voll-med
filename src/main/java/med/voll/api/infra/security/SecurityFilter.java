@@ -3,6 +3,9 @@ package med.voll.api.infra.security;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -11,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import med.voll.api.application.service.TokenService;
+import med.voll.api.infra.repository.UsuarioRepository;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -18,12 +22,22 @@ public class SecurityFilter extends OncePerRequestFilter {
   @Autowired
   private TokenService tokenService;
 
+  @Autowired
+  private UsuarioRepository repository;
+
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
-        String token = this.getToken(request);
+    String token = this.getToken(request);
 
-        String subject = tokenService.decryptToken(token);
+    if (token != null) {
+      String subject = tokenService.decryptToken(token);
+      UserDetails usuario = repository.findByLogin(subject);
+
+      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
 
     filterChain.doFilter(request, response);
   }
@@ -31,9 +45,10 @@ public class SecurityFilter extends OncePerRequestFilter {
   private String getToken(HttpServletRequest request) {
     String header = request.getHeader("Authorization");
 
-    if (header == null) throw new RuntimeException("Invalid authorization header");
+    if (header != null)
+      return header.replace("Bearer ", "");
 
-    return header.replace("Bearer ", "");
+    return null;
   }
 
 }
