@@ -8,4 +8,5 @@ import med.voll.api.domain.paciente.Paciente;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     Page<Paciente> findAllByAtivoTrue(Pageable paginacao);
+    
 }
