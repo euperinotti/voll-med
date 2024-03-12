@@ -1,11 +1,10 @@
 package med.voll.api.application.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
+import med.voll.api.application.dto.DadosCancelamentoConsulta;
 import med.voll.api.application.error.InvalidParamException;
 import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.medico.Medico;
@@ -42,11 +41,20 @@ public class ConsultaService {
     Paciente paciente = pacienteRepository.findById(body.idPaciente()).get();
     Medico medico = medicoRepository.findById(body.idMedico()).get();
 
-    Consulta consulta = new Consulta(null, medico, paciente, body.data());
+    Consulta consulta = new Consulta(null, medico, paciente, body.data(), null);
     
     repository.save(consulta);
 
   }
+
+  public void cancelar(DadosCancelamentoConsulta dados) throws InvalidParamException {
+    if (!repository.existsById(dados.idConsulta())) {
+        throw new InvalidParamException("Id da consulta informado não existe!");
+    }
+
+    var consulta = repository.getReferenceById(dados.idConsulta());
+    consulta.cancelar(dados.motivo());
+}
 
   private Medico escolherMedico(DadosAgendamentoConsulta dados) throws InvalidParamException {
     if (dados.idMedico() != null) {
