@@ -1,10 +1,15 @@
 package med.voll.api.application.usecases.consulta;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 import med.voll.api.infra.repository.ConsultaRepository;
 
+@Component
 public class MedicoComConsultaNoMesmoHorarioUseCase implements IConsultaUseCase {
 
+  @Autowired
   private ConsultaRepository repository;
 
   @Override

@@ -1,11 +1,14 @@
 package med.voll.api.application.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 import med.voll.api.application.dto.DadosCancelamentoConsulta;
 import med.voll.api.application.error.InvalidParamException;
+import med.voll.api.application.usecases.consulta.IConsultaUseCase;
 import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
@@ -24,6 +27,9 @@ public class ConsultaService {
 
   @Autowired
   private PacienteRepository pacienteRepository;
+
+  @Autowired
+  private List<IConsultaUseCase> usecases;
   
   public void agendar(DadosAgendamentoConsulta body) throws InvalidParamException {
 
@@ -38,8 +44,10 @@ public class ConsultaService {
       throw new InvalidParamException("Médico não encontrado");
     }
 
+    usecases.forEach(usecase -> usecase.execute(body));
+
     Paciente paciente = pacienteRepository.findById(body.idPaciente()).get();
-    Medico medico = medicoRepository.findById(body.idMedico()).get();
+    Medico medico = escolherMedico(body);
 
     Consulta consulta = new Consulta(null, medico, paciente, body.data(), null);
     

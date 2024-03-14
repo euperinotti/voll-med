@@ -3,9 +3,12 @@ package med.voll.api.application.usecases.consulta;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Component;
+
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 
-public class HorarioFuncionamentoUseCase {
+@Component
+public class HorarioFuncionamentoUseCase implements IConsultaUseCase{
   public void execute(DadosAgendamentoConsulta dados) {
     LocalDateTime dataConsulta = dados.data();
 

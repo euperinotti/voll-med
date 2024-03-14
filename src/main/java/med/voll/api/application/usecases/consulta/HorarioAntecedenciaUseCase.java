@@ -3,9 +3,12 @@ package med.voll.api.application.usecases.consulta;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Component;
+
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 
-public class HorarioAntecedenciaUseCase {
+@Component
+public class HorarioAntecedenciaUseCase implements IConsultaUseCase {
   public void execute(DadosAgendamentoConsulta dados) {
     LocalDateTime dataConsulta = dados.data();
     LocalDateTime now = LocalDateTime.now();
