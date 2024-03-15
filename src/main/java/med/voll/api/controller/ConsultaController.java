@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 import med.voll.api.application.dto.DadosCancelamentoConsulta;
+import med.voll.api.application.dto.DadosDetalhamentoConsulta;
 import med.voll.api.application.error.InvalidParamException;
 import med.voll.api.application.service.ConsultaService;
 
@@ -24,8 +25,9 @@ public class ConsultaController {
 
   @PostMapping
   @Transactional
-  public ResponseEntity<Object> agendarConsulta(@RequestBody @Valid DadosAgendamentoConsulta body) {
-    return ResponseEntity.ok(body);
+  public ResponseEntity<DadosDetalhamentoConsulta> agendarConsulta(@RequestBody @Valid DadosAgendamentoConsulta body) throws InvalidParamException {
+    DadosDetalhamentoConsulta dto = service.agendar(body);
+    return ResponseEntity.ok(dto);
   }
 
   @DeleteMapping

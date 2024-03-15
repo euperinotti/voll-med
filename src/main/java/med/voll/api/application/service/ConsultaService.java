@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import med.voll.api.application.dto.DadosAgendamentoConsulta;
 import med.voll.api.application.dto.DadosCancelamentoConsulta;
+import med.voll.api.application.dto.DadosDetalhamentoConsulta;
 import med.voll.api.application.error.InvalidParamException;
 import med.voll.api.application.usecases.consulta.IConsultaUseCase;
 import med.voll.api.domain.consulta.Consulta;
@@ -31,7 +32,7 @@ public class ConsultaService {
   @Autowired
   private List<IConsultaUseCase> usecases;
   
-  public void agendar(DadosAgendamentoConsulta body) throws InvalidParamException {
+  public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta body) throws InvalidParamException {
 
     boolean pacienteExiste = pacienteRepository.existsById(body.idPaciente());
     boolean medicoExiste = medicoRepository.existsById(body.idMedico());
@@ -52,6 +53,8 @@ public class ConsultaService {
     Consulta consulta = new Consulta(null, medico, paciente, body.data(), null);
     
     repository.save(consulta);
+
+    return new DadosDetalhamentoConsulta(consulta);
 
   }
 
