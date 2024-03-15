@@ -22,24 +22,31 @@ public class SecurityConfiguration {
   private SecurityFilter securityFilter;
 
   @Bean
-  public SecurityFilterChain execute(HttpSecurity http) throws Exception {
+  protected SecurityFilterChain execute(HttpSecurity http) throws Exception {
+    // return http.csrf(csrf -> csrf.disable())
+    //     .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    //     .authorizeHttpRequests(req -> {
+    //         req.antMatchers("/login");
+    //         req.anyRequest().authenticated();
+    //       })
+    //     .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+    //     .build();
     return http.csrf(csrf -> csrf.disable())
         .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(req -> {
-            req.antMatchers(HttpMethod.POST,"/login");
-            req.anyRequest().authenticated();
+            req.anyRequest().permitAll();
           })
         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 
   @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+  protected AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
     return configuration.getAuthenticationManager();
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder() {
+  protected PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 }
