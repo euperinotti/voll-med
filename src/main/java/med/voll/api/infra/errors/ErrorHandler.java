@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.persistence.EntityNotFoundException;
+import med.voll.api.application.error.InvalidParamException;
 import med.voll.api.infra.dto.DadosErroValidacao;
 
 @RestControllerAdvice
@@ -29,6 +30,18 @@ public class ErrorHandler {
     List<FieldError> errorsList = exception.getFieldErrors();
 
     return ResponseEntity.badRequest().body(errorsList.stream().map(DadosErroValidacao::new).toList());
+  }
+
+  @ExceptionHandler(InvalidParamException.class)
+  public ResponseEntity<Object> handleInvalidParamError(InvalidParamException exception) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+  }
+
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<Object> handleRuntimeException(RuntimeException exception) {
+
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
   }
 
   @ExceptionHandler(BadCredentialsException.class)
