@@ -11,7 +11,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 
-import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.domain.user.User;
 
 @Service
 public class TokenService {
@@ -19,12 +19,12 @@ public class TokenService {
   @Value("${api.security.token.secret}")
   private String secret;
 
-  public String generateToken(Usuario usuario) {
+  public String generateToken(User user) {
     try {
       Algorithm algorithm = Algorithm.HMAC256(this.secret);
       return JWT.create()
           .withIssuer("voll-med")
-          .withSubject(usuario.getLogin())
+          .withSubject(user.getLogin())
           .withExpiresAt(expirationTime())
           .sign(algorithm);
     } catch (JWTCreationException e) {

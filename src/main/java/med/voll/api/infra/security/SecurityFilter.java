@@ -14,7 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import med.voll.api.application.service.TokenService;
-import med.voll.api.infra.repository.UsuarioRepository;
+import med.voll.api.infra.repository.UserRepository;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -23,7 +23,7 @@ public class SecurityFilter extends OncePerRequestFilter {
   private TokenService tokenService;
 
   @Autowired
-  private UsuarioRepository repository;
+  private UserRepository repository;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
