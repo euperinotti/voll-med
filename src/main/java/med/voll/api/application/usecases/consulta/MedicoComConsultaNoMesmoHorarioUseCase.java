@@ -14,7 +14,7 @@ public class MedicoComConsultaNoMesmoHorarioUseCase implements IConsultaUseCase 
 
   @Override
   public void execute(DadosAgendamentoConsulta dados) {
-    boolean hasOtherAppointmentSchedule = repository.existsByMedicoIdAndData(dados.idMedico(), dados.data());
+    boolean hasOtherAppointmentSchedule = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(), dados.data());
 
     if (hasOtherAppointmentSchedule) { 
       throw new RuntimeException("Já existe uma consulta no mesmo horário");

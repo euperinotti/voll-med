@@ -10,6 +10,7 @@ import med.voll.api.application.dto.DadosCancelamentoConsulta;
 import med.voll.api.application.dto.DadosDetalhamentoConsulta;
 import med.voll.api.application.error.InvalidParamException;
 import med.voll.api.application.usecases.consulta.IConsultaUseCase;
+import med.voll.api.application.usecases.consulta.cancelamento.ICancelamentoConsultaUseCase;
 import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
@@ -31,7 +32,10 @@ public class ConsultaService {
 
   @Autowired
   private List<IConsultaUseCase> usecases;
-  
+
+  @Autowired
+  private List<ICancelamentoConsultaUseCase> cancelamentoConsultaUseCases;
+
   public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta body) throws InvalidParamException {
 
     boolean pacienteExiste = pacienteRepository.existsById(body.idPaciente());
@@ -51,7 +55,7 @@ public class ConsultaService {
     Medico medico = escolherMedico(body);
 
     Consulta consulta = new Consulta(null, medico, paciente, body.data(), null);
-    
+
     repository.save(consulta);
 
     return new DadosDetalhamentoConsulta(consulta);
@@ -60,12 +64,14 @@ public class ConsultaService {
 
   public void cancelar(DadosCancelamentoConsulta dados) throws InvalidParamException {
     if (!repository.existsById(dados.idConsulta())) {
-        throw new InvalidParamException("Id da consulta informado não existe!");
+      throw new InvalidParamException("Id da consulta informado não existe!");
     }
+
+    cancelamentoConsultaUseCases.forEach(v -> v.execute(dados));
 
     var consulta = repository.getReferenceById(dados.idConsulta());
     consulta.cancelar(dados.motivo());
-}
+  }
 
   private Medico escolherMedico(DadosAgendamentoConsulta dados) throws InvalidParamException {
     if (dados.idMedico() != null) {
@@ -76,7 +82,12 @@ public class ConsultaService {
       throw new InvalidParamException("Especialidade não informada");
     }
 
-    return medicoRepository.findRandomMedicAvailableOnDate(dados.especialidade(), dados.data());
+    Medico medicoAleatorio = medicoRepository.findRandomMedicAvailableOnDate(dados.especialidade(), dados.data());
+
+    if (medicoAleatorio == null) {
+      throw new InvalidParamException("Não há médicos disponíveis na data informada");
+    }
+    return medicoAleatorio;
   }
 
 }
