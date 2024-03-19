@@ -13,7 +13,7 @@ import med.voll.api.domain.doctor.Doctor;
 import med.voll.api.domain.doctor.Specialty;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-  Page<Doctor> findAllByAtivoTrue(Pageable page);
+  Page<Doctor> findAllByisActiveTrue(Pageable page);
 
   @Query("""
           SELECT d FROM Doctor d

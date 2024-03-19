@@ -51,7 +51,7 @@ public class DoctorController {
   @GetMapping
   public ResponseEntity<Page<ListDoctorDTO>> list(
       @PageableDefault(size = 10, sort = { "nome" }) Pageable pageConfig) {
-    Page<ListDoctorDTO> page = repository.findAllByAtivoTrue(pageConfig).map(ListDoctorDTO::new);
+    Page<ListDoctorDTO> page = repository.findAllByisActiveTrue(pageConfig).map(ListDoctorDTO::new);
     return ResponseEntity.ok(page);
   }
 
