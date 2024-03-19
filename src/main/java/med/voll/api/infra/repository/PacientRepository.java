@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import med.voll.api.domain.pacient.Pacient;
 
 public interface PacientRepository extends JpaRepository<Pacient, Long> {
-    Page<Pacient> findAllByActiveTrue(Pageable page);
+    Page<Pacient> findAllByisActiveTrue(Pageable page);
 
     @Query("""
         SELECT p.isActive
