@@ -6,12 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import med.voll.api.domain.doctor.Doctor;
 import med.voll.api.domain.doctor.Specialty;
 
+@Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
   Page<Doctor> findAllByisActiveTrue(Pageable page);
 
