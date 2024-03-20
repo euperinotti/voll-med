@@ -22,21 +22,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-@Entity(name = "User")
+@Entity
 public class User implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String login;
-  private String pass;
+
+  private String passwordHash;
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority("ROLE_USER"));
   }
+  
   @Override
   public String getPassword() {
-    return this.getPass();
+    return this.getPasswordHash();
   }
   @Override
   public String getUsername() {

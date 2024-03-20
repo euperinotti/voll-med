@@ -23,14 +23,6 @@ public class SecurityConfiguration {
 
   @Bean
   protected SecurityFilterChain execute(HttpSecurity http) throws Exception {
-    // return http.csrf(csrf -> csrf.disable())
-    //     .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-    //     .authorizeHttpRequests(req -> {
-    //         req.antMatchers("/login");
-    //         req.anyRequest().authenticated();
-    //       })
-    //     .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-    //     .build();
     return http.csrf(csrf -> csrf.disable())
         .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests()

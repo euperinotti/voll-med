@@ -1,5 +1,6 @@
 package med.voll.api.domain.address;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,8 @@ public class Address {
 
     private String street;
     private String neighborhood;
+
+    @Column(name = "zip_code")
     private String zipCode;
     private String number;
     private String complement;
