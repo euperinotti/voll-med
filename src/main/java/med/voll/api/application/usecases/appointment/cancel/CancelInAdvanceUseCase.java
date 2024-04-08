@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.CancelAppointmentDTO;
 import med.voll.api.domain.entities.Appointment;
-import med.voll.api.infra.repository.AppointmentRepository;
+import med.voll.api.infra.jpa.repository.AppointmentRepository;
 
 @Component
 public class CancelInAdvanceUseCase implements ICancelAppointmentUseCase {

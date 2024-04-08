@@ -25,7 +25,7 @@ import med.voll.api.application.dto.DoctorDetailsDTO;
 import med.voll.api.application.dto.ListDoctorDTO;
 import med.voll.api.application.dto.UpdateDoctorDTO;
 import med.voll.api.domain.entities.Doctor;
-import med.voll.api.infra.repository.DoctorRepository;
+import med.voll.api.infra.jpa.repository.DoctorRepository;
 
 @RestController
 @RequestMapping("doctors")

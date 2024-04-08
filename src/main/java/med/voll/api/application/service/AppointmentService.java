@@ -14,9 +14,9 @@ import med.voll.api.application.usecases.appointment.cancel.ICancelAppointmentUs
 import med.voll.api.domain.entities.Appointment;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.domain.entities.Pacient;
-import med.voll.api.infra.repository.AppointmentRepository;
-import med.voll.api.infra.repository.DoctorRepository;
-import med.voll.api.infra.repository.PacientRepository;
+import med.voll.api.infra.jpa.repository.AppointmentRepository;
+import med.voll.api.infra.jpa.repository.DoctorRepository;
+import med.voll.api.infra.jpa.repository.PacientRepository;
 
 @Service
 public class AppointmentService {

@@ -14,7 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import med.voll.api.application.service.TokenService;
-import med.voll.api.infra.repository.UserRepository;
+import med.voll.api.infra.jpa.repository.UserRepository;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {

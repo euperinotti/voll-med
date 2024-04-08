@@ -18,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import med.voll.api.domain.entities.Address;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.domain.enums.Specialty;
+import med.voll.api.infra.jpa.repository.DoctorRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
-import med.voll.api.infra.repository.AppointmentRepository;
+import med.voll.api.infra.jpa.repository.AppointmentRepository;
 
 @Component
 public class DoctorNotAvailableAtDate implements IScheduleAppointmentUseCase {

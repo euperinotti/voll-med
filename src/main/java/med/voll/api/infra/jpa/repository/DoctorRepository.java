@@ -1,4 +1,4 @@
-package med.voll.api.infra.repository;
+package med.voll.api.infra.jpa.repository;
 
 import java.time.LocalDateTime;
 

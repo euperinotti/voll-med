@@ -3,7 +3,7 @@ package med.voll.api.application.usecases.appointment;
 import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
-import med.voll.api.infra.repository.PacientRepository;
+import med.voll.api.infra.jpa.repository.PacientRepository;
 
 @Component
 public class ActivePacientUseCase implements IScheduleAppointmentUseCase {
