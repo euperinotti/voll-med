@@ -21,7 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.application.dto.UpdatePacientDTO;
-import med.voll.api.domain.entities.Pacient;
+import med.voll.api.domain.entities.PacientBO;
+import med.voll.api.infra.jakarta.repository.models.Pacient;
 import med.voll.api.infra.jpa.repository.PacientRepository;
 import med.voll.api.application.dto.AddPacientDTO;
 import med.voll.api.application.dto.PacientDetailsDTO;
@@ -39,7 +40,7 @@ public class PacientController {
     @Transactional
     public ResponseEntity<PacientDetailsDTO> add(@RequestBody @Valid AddPacientDTO data, UriComponentsBuilder uriComponentsBuilder) {
         Pacient pacient = new Pacient(data);
-        repository.save(new Pacient(data));
+        repository.save(pacient);
 
         URI uri = uriComponentsBuilder.path("/pacientes/{id}").buildAndExpand(pacient.getId()).toUri();
 
