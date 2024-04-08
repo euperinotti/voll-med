@@ -1,43 +1,33 @@
 package med.voll.api.domain.entities;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.application.dto.UpdatePacientDTO;
 import med.voll.api.application.dto.AddPacientDTO;
+import med.voll.api.application.dto.UpdatePacientDTO;
+import med.voll.api.domain.mappers.AddressMapper;
 
-@Table(name = "pacients")
-@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Pacient {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PacientBO {
   private Long id;
   private String name;
   private String email;
-
   private String phone;
-
   private String cpf;
-
-  @Embedded
   private AddressBO address;
-
   private Boolean isActive;
 
-  public Pacient(AddPacientDTO dto) {
+  public PacientBO(AddPacientDTO dto) {
     this.isActive = true;
     this.name = dto.name();
     this.email = dto.email();
     this.phone = dto.phone();
     this.cpf = dto.cpf();
-    this.address = new AddressBO(dto.address());
+    this.address = AddressMapper.toBO(dto.address());
   }
 
   public void atualizarInformacoes(UpdatePacientDTO dto) {
@@ -48,7 +38,7 @@ public class Pacient {
       this.phone = dto.phone();
     }
     if (dto.phone() != null) {
-      this.address.updateInfo(dto.address());
+      this.address = AddressMapper.toBO(dto.address());
     }
 
   }
