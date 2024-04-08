@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
+import med.voll.api.domain.usecases.IScheduleAppointmentUseCase;
 import med.voll.api.infra.jpa.repository.AppointmentRepository;
 
 @Component

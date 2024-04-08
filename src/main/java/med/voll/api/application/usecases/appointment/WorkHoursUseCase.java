@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
+import med.voll.api.domain.usecases.IScheduleAppointmentUseCase;
 
 @Component
 public class WorkHoursUseCase implements IScheduleAppointmentUseCase{

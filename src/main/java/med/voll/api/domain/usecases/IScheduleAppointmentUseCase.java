@@ -1,4 +1,4 @@
-package med.voll.api.application.usecases.appointment;
+package med.voll.api.domain.usecases;
 
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
 

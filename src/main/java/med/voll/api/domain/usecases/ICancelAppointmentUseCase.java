@@ -1,4 +1,4 @@
-package med.voll.api.application.usecases.appointment.cancel;
+package med.voll.api.domain.usecases;
 
 import med.voll.api.application.dto.CancelAppointmentDTO;
 
