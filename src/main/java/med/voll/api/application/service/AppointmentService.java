@@ -9,6 +9,7 @@ import med.voll.api.application.dto.AppointmentDetailsDTO;
 import med.voll.api.application.dto.CancelAppointmentDTO;
 import med.voll.api.application.dto.ScheduleAppointmentDTO;
 import med.voll.api.application.error.InvalidParamException;
+import med.voll.api.application.error.NotFoundException;
 import med.voll.api.domain.entities.Appointment;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.domain.entities.Pacient;
@@ -42,11 +43,11 @@ public class AppointmentService {
     boolean doctorExists = doctorRepository.existsById(body.doctorId());
 
     if (!pacientExists) {
-      throw new InvalidParamException("Paciente não encontrado");
+      throw new NotFoundException("Paciente não encontrado");
     }
 
     if (body.doctorId() != null && !doctorExists) {
-      throw new InvalidParamException("Médico não encontrado");
+      throw new NotFoundException("Médico não encontrado");
     }
 
     usecases.forEach(usecase -> usecase.execute(body));
@@ -64,7 +65,7 @@ public class AppointmentService {
 
   public void cancel(CancelAppointmentDTO body) throws InvalidParamException {
     if (!repository.existsById(body.appointmentId())) {
-      throw new InvalidParamException("Id da consulta informado não existe!");
+      throw new NotFoundException("Id da consulta informado não existe!");
     }
 
     cancelamentoConsultaUseCases.forEach(v -> v.execute(body));
