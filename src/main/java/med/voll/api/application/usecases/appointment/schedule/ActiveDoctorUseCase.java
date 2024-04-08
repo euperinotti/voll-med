@@ -1,4 +1,4 @@
-package med.voll.api.application.usecases.appointment;
+package med.voll.api.application.usecases.appointment.schedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
