@@ -24,7 +24,7 @@ import med.voll.api.application.dto.AddDoctorDTO;
 import med.voll.api.application.dto.DoctorDetailsDTO;
 import med.voll.api.application.dto.ListDoctorDTO;
 import med.voll.api.application.dto.UpdateDoctorDTO;
-import med.voll.api.domain.doctor.Doctor;
+import med.voll.api.domain.entities.Doctor;
 import med.voll.api.infra.repository.DoctorRepository;
 
 @RestController

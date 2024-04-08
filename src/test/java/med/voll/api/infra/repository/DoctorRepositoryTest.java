@@ -15,9 +15,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import med.voll.api.domain.address.Address;
-import med.voll.api.domain.doctor.Doctor;
-import med.voll.api.domain.doctor.Specialty;
+import med.voll.api.domain.entities.Address;
+import med.voll.api.domain.entities.Doctor;
+import med.voll.api.domain.enums.Specialty;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)

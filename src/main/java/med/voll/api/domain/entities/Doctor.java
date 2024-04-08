@@ -1,4 +1,4 @@
-package med.voll.api.domain.doctor;
+package med.voll.api.domain.entities;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.application.dto.AddDoctorDTO;
 import med.voll.api.application.dto.UpdateDoctorDTO;
-import med.voll.api.domain.address.Address;
+import med.voll.api.domain.enums.Specialty;
 
 @Table(name = "doctors")
 @Entity

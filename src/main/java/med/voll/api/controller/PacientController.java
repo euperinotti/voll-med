@@ -21,10 +21,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.application.dto.UpdatePacientDTO;
+import med.voll.api.domain.entities.Pacient;
 import med.voll.api.application.dto.AddPacientDTO;
 import med.voll.api.application.dto.PacientDetailsDTO;
 import med.voll.api.application.dto.ListPacientDTO;
-import med.voll.api.domain.pacient.Pacient;
 import med.voll.api.infra.repository.PacientRepository;
 
 @RestController

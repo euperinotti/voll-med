@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import med.voll.api.application.dto.CancelAppointmentDTO;
-import med.voll.api.domain.appointment.Appointment;
+import med.voll.api.domain.entities.Appointment;
 import med.voll.api.infra.repository.AppointmentRepository;
 
 @Component

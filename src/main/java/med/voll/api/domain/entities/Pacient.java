@@ -1,4 +1,4 @@
-package med.voll.api.domain.pacient;
+package med.voll.api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.application.dto.UpdatePacientDTO;
 import med.voll.api.application.dto.AddPacientDTO;
-import med.voll.api.domain.address.Address;
 
 @Table(name = "pacients")
 @Entity

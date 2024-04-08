@@ -1,4 +1,4 @@
-package med.voll.api.domain.address;
+package med.voll.api.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

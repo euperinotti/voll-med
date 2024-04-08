@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.domain.doctor.Specialty;
+import med.voll.api.domain.enums.Specialty;
 
 public record ScheduleAppointmentDTO(
     Long doctorId,

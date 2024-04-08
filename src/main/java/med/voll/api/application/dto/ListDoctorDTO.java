@@ -1,7 +1,7 @@
 package med.voll.api.application.dto;
 
-import med.voll.api.domain.doctor.Doctor;
-import med.voll.api.domain.doctor.Specialty;
+import med.voll.api.domain.entities.Doctor;
+import med.voll.api.domain.enums.Specialty;
 
 public record ListDoctorDTO(Long id, String name, String email, String crm, Specialty specialty) {
 

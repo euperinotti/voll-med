@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.domain.appointment.Appointment;
+import med.voll.api.domain.entities.Appointment;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {

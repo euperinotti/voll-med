@@ -1,4 +1,4 @@
-package med.voll.api.domain.appointment;
+package med.voll.api.domain.enums;
 
 public enum EnumCancelReason {
   PACIENT_CANCELED,

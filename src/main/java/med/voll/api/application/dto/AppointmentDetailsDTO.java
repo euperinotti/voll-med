@@ -2,7 +2,7 @@ package med.voll.api.application.dto;
 
 import java.time.LocalDateTime;
 
-import med.voll.api.domain.appointment.Appointment;
+import med.voll.api.domain.entities.Appointment;
 
 public record AppointmentDetailsDTO(
     Long id,

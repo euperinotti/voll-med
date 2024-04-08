@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.domain.doctor.Doctor;
-import med.voll.api.domain.doctor.Specialty;
+import med.voll.api.domain.entities.Doctor;
+import med.voll.api.domain.enums.Specialty;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.domain.pacient.Pacient;
+import med.voll.api.domain.entities.Pacient;
 
 @Repository
 public interface PacientRepository extends JpaRepository<Pacient, Long> {

@@ -1,4 +1,4 @@
-package med.voll.api.domain.appointment;
+package med.voll.api.domain.entities;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.doctor.Doctor;
-import med.voll.api.domain.pacient.Pacient;
+import med.voll.api.domain.enums.EnumCancelReason;
 
 @Table(name = "appointments")
 @Entity
