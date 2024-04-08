@@ -24,7 +24,8 @@ import med.voll.api.application.dto.AddDoctorDTO;
 import med.voll.api.application.dto.DoctorDetailsDTO;
 import med.voll.api.application.dto.ListDoctorDTO;
 import med.voll.api.application.dto.UpdateDoctorDTO;
-import med.voll.api.domain.entities.Doctor;
+import med.voll.api.domain.entities.DoctorBO;
+import med.voll.api.infra.jakarta.repository.models.Doctor;
 import med.voll.api.infra.jpa.repository.DoctorRepository;
 
 @RestController
@@ -39,7 +40,7 @@ public class DoctorController {
   @Transactional
   public ResponseEntity<DoctorDetailsDTO> add(@RequestBody @Valid AddDoctorDTO data,
       UriComponentsBuilder uriComponentsBuilder) {
-    Doctor doctor = new Doctor(data);
+    DoctorBO doctor = new DoctorBO(data);
     repository.save(doctor);
 
     URI uri = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(doctor.getId()).toUri();

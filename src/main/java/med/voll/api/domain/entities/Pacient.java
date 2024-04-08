@@ -27,7 +27,7 @@ public class Pacient {
   private String cpf;
 
   @Embedded
-  private Address address;
+  private AddressBO address;
 
   private Boolean isActive;
 
@@ -37,7 +37,7 @@ public class Pacient {
     this.email = dto.email();
     this.phone = dto.phone();
     this.cpf = dto.cpf();
-    this.address = new Address(dto.address());
+    this.address = new AddressBO(dto.address());
   }
 
   public void atualizarInformacoes(UpdatePacientDTO dto) {

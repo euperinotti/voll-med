@@ -18,6 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.enums.EnumCancelReason;
+import med.voll.api.infra.jakarta.repository.models.Doctor;
 
 @Table(name = "appointments")
 @Entity
