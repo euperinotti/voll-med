@@ -1,4 +1,4 @@
-package med.voll.api.infra.jakarta.models;
+package med.voll.api.infra.jakarta.repository.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
